@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatRipple } from '@angular/material';
 import { Sound } from '../shared/sound.model';
 import { CookieService } from 'ngx-cookie-service';
+import { AudioContext } from 'angular-audio-context';
 
 @Component({
   selector: 'app-main',
@@ -30,14 +31,14 @@ export class MainComponent implements OnInit {
 
 
   sound: Sound;
-  context: AudioContext;
   wave : OscillatorType;
   state: string;
   toggleState: string = 'off';
 
-  constructor(private cookie: CookieService,){
-    this.context = new AudioContext();
-    this.sound = new Sound(this.context);
+  constructor(private cookie: CookieService,
+              private _audioContext: AudioContext){
+    let context = _audioContext;
+    this.sound = new Sound(context);
     this.sound.init();
     this.wave = 'sine';
   }

@@ -6,6 +6,7 @@ import { CoreModule } from './core/core.module';
 import { MaterialModule } from './shared/material.module';
 import { MainComponent } from './main/main.component';
 import { CookieService } from 'ngx-cookie-service';
+import { AudioContextModule } from 'angular-audio-context';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { CookieService } from 'ngx-cookie-service';
     AppRoutingModule,
     CoreModule,
     MaterialModule,
+    AudioContextModule.forRoot('balanced'),
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]

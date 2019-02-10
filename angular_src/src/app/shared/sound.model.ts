@@ -1,9 +1,12 @@
+import { AudioContextProxy } from 'angular-audio-context/build/es2018/audio-context-proxy';
+import { IOscillatorNode, IGainNode } from 'standardized-audio-context';
+
 export class Sound {
-    constructor(private context: AudioContext) {
+    constructor(private context: AudioContextProxy) {
       this.context = context;
     }
-    oscillator: OscillatorNode;
-    gainNode: GainNode;
+    oscillator: IOscillatorNode;
+    gainNode: IGainNode;
   
     init() {
       this.oscillator = this.context.createOscillator();
