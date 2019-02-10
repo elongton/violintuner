@@ -1,0 +1,44 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# compiled output
+/angular_src/dist
+/angular_src/tmp
+/angular_src/out-tsc
+
+# dependencies
+/angular_src/node_modules
+
+# profiling files
+chrome-profiler-events.json
+speed-measure-plugin.json
+
+# IDEs and editors
+/angular_src/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/*
+
+# misc
+/angular_src/.sass-cache
+/angular_src/connect.lock
+/angular_src/coverage
+/angular_src/libpeerconnection.log
+npm-debug.log
+yarn-error.log
+testem.log
+/angular_src/typings
+
+# System Files
+.DS_Store
+Thumbs.db

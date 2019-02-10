@@ -1,0 +1,37 @@
+  <div fxLayoutAlign="center center" class="fillscreen" 
+  matRipple
+  [matRippleDisabled]="true">
+
+
+
+
+  <div fxLayout="column" class="" style="z-index: 100;">
+    <div class="dashed">
+        <button mat-raised-button color="primary" class="largebutton" (click)="play()">
+            {{(toggleState == 'on') ? '' : 'A'}}
+            <mat-icon color="white" class="pause_button" *ngIf="toggleState == 'on'">pause</mat-icon>
+        </button>
+    </div>
+
+
+    <div fxLayout="row" class="" fxLayoutAlign="start center" style="margin-top: 20px;">
+      <mat-icon color="primary" class="" *ngIf="toggleState == 'off'">volume_mute</mat-icon>
+      <mat-icon color="primary" class="" *ngIf="(toggleState == 'on') && (volumeSliderValue <= 0.5)">volume_down</mat-icon>
+      <mat-icon color="primary" class="" *ngIf="(toggleState == 'on') && (volumeSliderValue > 0.5)">volume_up</mat-icon>
+      <mat-slider
+        (input)="onSliderChange($event.value)"
+        color="primary"
+        [disabled]="disabled"
+        [invert]="invert"
+        [max]="max"
+        [(value)] = "volumeSliderValue"
+        [min]="min"
+        [step]="step"
+        [thumbLabel]="thumbLabel"
+        [vertical]="vertical">
+      </mat-slider>
+    </div>
+
+  </div>
+
+</div>
