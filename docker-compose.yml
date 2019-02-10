@@ -11,4 +11,4 @@ services:
     #   restart_policy:
     #     condition: on-failure
     ports:
-      - '3000:80'
+      - '80:80'
