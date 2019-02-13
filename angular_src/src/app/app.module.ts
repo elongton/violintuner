@@ -8,7 +8,7 @@ import { MainComponent } from './main/main.component';
 import { CookieService } from 'ngx-cookie-service';
 import { AudioContextModule } from 'angular-audio-context';
 import { FeedbackComponent, FeedbackDialog } from './feedback/feedback.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material';
 import { FeedbackService } from './feedback/feedback.service';
 
@@ -23,6 +23,7 @@ import { FeedbackService } from './feedback/feedback.service';
     FeedbackDialog,
   ],
   imports: [
+    ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
     CoreModule,
