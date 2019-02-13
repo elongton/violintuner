@@ -9,7 +9,8 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatRippleModule} from '@angular/material/core';
 //Popups & Modals
 import {MatTooltipModule} from '@angular/material/tooltip';
-import { MatIconModule } from '@angular/material';
+import { MatIconModule, MatFormFieldModule, MatDialogModule, MatInputModule } from '@angular/material';
+
 
 @NgModule({
   imports: [
@@ -22,6 +23,9 @@ import { MatIconModule } from '@angular/material';
     //Popups & Modals
     MatTooltipModule,
     MatIconModule,
+    MatFormFieldModule,
+    MatDialogModule,
+    MatInputModule,
   ],
   exports: [
     //Form Controls
@@ -34,6 +38,9 @@ import { MatIconModule } from '@angular/material';
     //Popups & Modals
     MatTooltipModule,
     MatIconModule,
+    MatFormFieldModule,
+    MatDialogModule,
+    MatInputModule,
   ]
 })
 
