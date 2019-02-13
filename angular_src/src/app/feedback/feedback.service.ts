@@ -7,7 +7,8 @@ interface Feedback{
     feedback: string
 }
 
-const postFeedbackURL = 'domain/feedback';
+const postFeedbackURL = 'domain/feedback/post';
+const getFeedbackURL = 'domain/feedback/get';
 
 
 
@@ -28,7 +29,7 @@ export class FeedbackService{
         return this.http.post(postFeedbackURL, content)
     }
     getFeedback(){
-        return this.http.get(postFeedbackURL)
+        return this.http.get(getFeedbackURL)
     }
 
 

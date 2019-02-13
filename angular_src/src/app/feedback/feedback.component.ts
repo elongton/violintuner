@@ -56,8 +56,8 @@ export class FeedbackDialog implements OnInit {
 
     ngOnInit(){
       this.feedbackForm = new FormGroup({
-        'email': new FormControl(''),
-        'feedback': new FormControl('', Validators.required),
+        'email': new FormControl(this.fbService.email),
+        'feedback': new FormControl(this.fbService.feedback, Validators.required),
       }) 
     }
 
@@ -74,6 +74,8 @@ export class FeedbackDialog implements OnInit {
 
 
   onNoClick(): void {
+    this.fbService.email = this.feedbackForm.value.email;
+    this.fbService.feedback = this.feedbackForm.value.feedback;
     this.dialogRef.close();
   }
 

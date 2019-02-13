@@ -11,6 +11,7 @@ import { FeedbackComponent, FeedbackDialog } from './feedback/feedback.component
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material';
 import { FeedbackService } from './feedback/feedback.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { FeedbackService } from './feedback/feedback.service';
     BrowserModule,
     AppRoutingModule,
     CoreModule,
+    HttpClientModule,
     FormsModule,
     MaterialModule,
     AudioContextModule.forRoot('balanced'),
