@@ -1,9 +1,10 @@
 import { Component, Inject } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { FeedbackService } from './feedback.service';
 
 export interface DialogData {
-  animal: string;
-  name: string;
+  email: string;
+  feedback: string;
 }
 
 
@@ -14,21 +15,21 @@ export interface DialogData {
 })
 export class FeedbackComponent {
 
+  constructor(public dialog: MatDialog, private fbService: FeedbackService) { }
 
-  animal: string;
-  name: string;
-
-  constructor(public dialog: MatDialog) { }
+  email:string;
+  feedback: string;
 
   openDialog(): void {
     const dialogRef = this.dialog.open(FeedbackDialog, {
       // width: '400px',
-      data: {name: this.name, animal: this.animal}
+      data: {email: this.email, feedback: this.feedback}
     });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      this.animal = result;
+      this.email = result;
+      this.fbService.openSnackBar('Thanks for your feedback', 'OK', {duration: 3000, panelClass: ['white-snackbar']});
     });
   }
 

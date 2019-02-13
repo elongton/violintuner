@@ -10,6 +10,7 @@ import { AudioContextModule } from 'angular-audio-context';
 import { FeedbackComponent, FeedbackDialog } from './feedback/feedback.component';
 import { FormsModule } from '@angular/forms';
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material';
+import { FeedbackService } from './feedback/feedback.service';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material';
     AudioContextModule.forRoot('balanced'),
   ],
   providers: [CookieService,
-    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: true}}],
+              {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: true}},
+              FeedbackService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

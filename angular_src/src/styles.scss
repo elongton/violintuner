@@ -3,3 +3,8 @@
 body { 
     font-family: Roboto, Arial, sans-serif;
 }
+
+
+//has to be global
+.white-snackbar{background-color: rgba(0,0,0,0); color: black;}
+.white-snackbar button{color: #673ab7;}
