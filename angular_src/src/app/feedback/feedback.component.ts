@@ -16,10 +16,10 @@ export interface DialogData {
 })
 export class FeedbackComponent {
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog, private fbService: FeedbackService,) { }
 
-  email:string;
-  feedback: string;
+  email:string = 'yes';
+  feedback: string = 'maaam';
 
   openDialog(): void {
     const dialogRef = this.dialog.open(FeedbackDialog, {
@@ -30,7 +30,7 @@ export class FeedbackComponent {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
       this.email = result;
-
+      this.fbService.setLocalFields(this.email, this.feedback);
     });
   }
 
@@ -55,9 +55,12 @@ export class FeedbackDialog implements OnInit {
     feedbackObject: {email: string, feedback: string}
 
     ngOnInit(){
+      let localFields = this.fbService.getLocalFields();
+      console.log(localFields.email)
+      console.log(localFields.feedback)
       this.feedbackForm = new FormGroup({
-        'email': new FormControl(this.fbService.email),
-        'feedback': new FormControl(this.fbService.feedback, Validators.required),
+        'email': new FormControl(localFields.email),
+        'feedback': new FormControl(localFields.feedback, Validators.required),
       }) 
     }
 
@@ -74,8 +77,8 @@ export class FeedbackDialog implements OnInit {
 
 
   onNoClick(): void {
-    this.fbService.email = this.feedbackForm.value.email;
-    this.fbService.feedback = this.feedbackForm.value.feedback;
+    console.log(this.feedbackForm.value.email)
+    this.fbService.setLocalFields(this.feedbackForm.value.email, this.feedbackForm.value.feedback);
     this.dialogRef.close();
   }
 

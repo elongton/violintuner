@@ -17,13 +17,21 @@ export class FeedbackService{
 
     constructor(private snackBar: MatSnackBar, private http: HttpClient,){}
 
-    email: string;
-    feedback: string;
+    public email: string = '';
+    public feedback: string = '';
 
     openSnackBar(message: string, action: string, properties: any) {
         this.snackBar.open(message, action, properties);
     }//openSnackBar
 
+
+    getLocalFields(){
+        return {email: this.email, feedback: this.feedback};
+    }
+    setLocalFields(email: string, feedback: string){
+        this.email = email;
+        this.feedback = feedback;
+    }
 
     sendFeedback(content:Feedback){
         return this.http.post(postFeedbackURL, content)
