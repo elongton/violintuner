@@ -24,13 +24,10 @@ export class FeedbackService{
         this.snackBar.open(message, action, properties);
     }//openSnackBar
 
-
-    getLocalFields(){
-        return {email: this.email, feedback: this.feedback};
-    }
     setLocalFields(email: string, feedback: string){
         this.email = email;
         this.feedback = feedback;
+        console.log(this.email, this.feedback);
     }
 
     sendFeedback(content:Feedback){
@@ -39,6 +36,8 @@ export class FeedbackService{
     getFeedback(){
         return this.http.get(getFeedbackURL)
     }
+
+ 
 
 
 }

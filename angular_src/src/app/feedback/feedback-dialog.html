@@ -1,13 +1,23 @@
-<h1 mat-dialog-title>How can we do better?</h1>
+<div style="position: relative;">
+  <div (click)="onCancelClick()" style="position: absolute; top: -15px; right: -25px; cursor: pointer;">
+    <mat-icon style="color: rgba(0,0,0,0.3); font-size: 15px;" >clear</mat-icon>
+  </div>
+  
+  <h1 mat-dialog-title>How can we do better?</h1>
+</div>
+
+
 <form [formGroup]="feedbackForm" (ngSubmit)='onSubmit()'>
   <div mat-dialog-content>
       <mat-form-field class="fullwidth">
         <input
+          cdkFocusInitial
           type="text"
           matInput
           placeholder="Email (optional)"
           formControlName="email">
-        <mat-hint>We will not spam or share your email.</mat-hint>
+          <mat-hint style="color: red;" *ngIf="!feedbackForm.controls.email.valid">Please enter a valid email:    youremail@example.com</mat-hint>
+          <mat-hint *ngIf="feedbackForm.controls.email.valid">We will not spam or share your email.</mat-hint>
       </mat-form-field>
       <br>
       <mat-form-field class="fullwidth" style="margin-top: 20px;">
@@ -17,9 +27,10 @@
           matInput 
           placeholder="Your suggestion..."
           formControlName="feedback"></textarea>
+          <mat-hint style="color: red;" *ngIf="!feedbackForm.controls.feedback.valid && feedbackForm.controls.feedback.touched">Please provide feedback before you submit.</mat-hint>
       </mat-form-field>
   </div>
   <div mat-dialog-actions fxLayoutAlign="center" style="padding-bottom: 1.25em;">
-      <button mat-button cdkFocusInitial type="button" (click)="onSubmit()">Submit</button>
+      <button mat-button type="button" [disabled]='!feedbackForm.valid' (click)="onSubmit()">Submit</button>
   </div>
 </form>

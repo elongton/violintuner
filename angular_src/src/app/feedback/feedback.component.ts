@@ -18,19 +18,18 @@ export class FeedbackComponent {
 
   constructor(public dialog: MatDialog, private fbService: FeedbackService,) { }
 
-  email:string = 'yes';
-  feedback: string = 'maaam';
+  email:string = 'email data';
+  feedback: string = 'feedback data';
 
   openDialog(): void {
     const dialogRef = this.dialog.open(FeedbackDialog, {
-      // width: '400px',
-      data: {email: this.email, feedback: this.feedback}
+      panelClass: 'feedbackDialog',
+      autoFocus: true,
+      data: {email: this.email, feedback: this.feedback},
+      disableClose: true,
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      this.email = result;
-      this.fbService.setLocalFields(this.email, this.feedback);
     });
   }
 
@@ -50,36 +49,29 @@ export class FeedbackDialog implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
     private fbService: FeedbackService) {}
 
-
     feedbackForm: FormGroup;
     feedbackObject: {email: string, feedback: string}
 
     ngOnInit(){
-      let localFields = this.fbService.getLocalFields();
-      console.log(localFields.email)
-      console.log(localFields.feedback)
       this.feedbackForm = new FormGroup({
-        'email': new FormControl(localFields.email),
-        'feedback': new FormControl(localFields.feedback, Validators.required),
+        'email': new FormControl(this.fbService.email, Validators.email),
+        'feedback': new FormControl(this.fbService.feedback, Validators.required),
       }) 
+      // console.log(this.feedbackForm)
     }
-
     onSubmit(){
-      let feedbackForm = this.feedbackForm;
       this.feedbackObject = {
-        email: feedbackForm.value.email,
-        feedback: feedbackForm.value.feedback,
+        email: this.feedbackForm.value.email,
+        feedback: this.feedbackForm.value.feedback,
       }
-
-      this.fbService.openSnackBar('Thanks for your feedback', 'OK', {duration: 3000, panelClass: ['white-snackbar']});
+      this.fbService.openSnackBar('Thanks for your feedback', 'Anytime!', {duration: 3000, panelClass: ['white-snackbar']});
       this.dialogRef.close();
     }
 
+    onCancelClick():void{
+        this.fbService.setLocalFields(this.feedbackForm.value.email, this.feedbackForm.value.feedback);
+        this.dialogRef.close();
+    }
 
-  onNoClick(): void {
-    console.log(this.feedbackForm.value.email)
-    this.fbService.setLocalFields(this.feedbackForm.value.email, this.feedbackForm.value.feedback);
-    this.dialogRef.close();
-  }
 
 }

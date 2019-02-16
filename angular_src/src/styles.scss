@@ -6,5 +6,16 @@ body {
 
 
 //has to be global
+.dashed{border: 1px dashed black;}
+
+
+
 .white-snackbar{background-color: rgba(0,0,0,0); color: black;}
 .white-snackbar button{color: #673ab7;}
+
+div.feedbackDialog{
+    max-width: 600px;
+    width: 100%;
+    overflow-x: hidden;
+
+}
