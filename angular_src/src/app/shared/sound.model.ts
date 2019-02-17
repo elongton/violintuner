@@ -30,6 +30,6 @@ export class Sound {
   
     stop() {
       this.gainNode.gain.exponentialRampToValueAtTime(0.001, this.context.currentTime + .5);
-      this.oscillator.stop(this.context.currentTime + 1);
+      this.oscillator.stop(this.context.currentTime + .5);
     }
   }
