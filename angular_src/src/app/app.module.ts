@@ -12,6 +12,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material';
 import { FeedbackService } from './feedback/feedback.service';
 import { HttpClientModule } from '@angular/common/http';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -31,6 +34,8 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     FormsModule,
     MaterialModule,
+    AngularFirestoreModule,
+    AngularFireModule.initializeApp(environment.firebase),
     AudioContextModule.forRoot('balanced'),
   ],
   providers: [CookieService,

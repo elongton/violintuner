@@ -64,6 +64,8 @@ export class FeedbackDialog implements OnInit {
         email: this.feedbackForm.value.email,
         feedback: this.feedbackForm.value.feedback,
       }
+
+      this.fbService.sendFeedback(this.feedbackObject);
       this.fbService.openSnackBar('Thanks for your feedback', 'Anytime!', {duration: 3000, panelClass: ['white-snackbar']});
       this.dialogRef.close();
     }

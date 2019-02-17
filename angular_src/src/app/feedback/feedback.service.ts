@@ -1,6 +1,8 @@
 import { MatSnackBar } from '@angular/material';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { AngularFirestore } from '@angular/fire/firestore';
+
 
 interface Feedback{
     email: string,
@@ -15,7 +17,7 @@ const getFeedbackURL = 'domain/feedback/get';
 @Injectable()
 export class FeedbackService{
 
-    constructor(private snackBar: MatSnackBar, private http: HttpClient,){}
+    constructor(private snackBar: MatSnackBar, private http: HttpClient, private db: AngularFirestore){}
 
     public email: string = '';
     public feedback: string = '';
@@ -27,14 +29,13 @@ export class FeedbackService{
     setLocalFields(email: string, feedback: string){
         this.email = email;
         this.feedback = feedback;
-        console.log(this.email, this.feedback);
     }
 
     sendFeedback(content:Feedback){
-        return this.http.post(postFeedbackURL, content)
+        this.db.collection('feedback').add(content)
     }
     getFeedback(){
-        return this.http.get(getFeedbackURL)
+        this.db.collection('feedback').valueChanges().subscribe(result=> console.log(result))
     }
 
  
