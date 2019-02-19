@@ -28,7 +28,7 @@ import { environment } from '../environments/environment';
   ],
   imports: [
     ReactiveFormsModule,
-    BrowserModule.withServerTransition({ appId: 'serverApp' }),
+    BrowserModule.withServerTransition({ appId: 'violintuner' }),
     AppRoutingModule,
     CoreModule,
     HttpClientModule,
