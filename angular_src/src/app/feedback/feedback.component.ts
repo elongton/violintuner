@@ -1,7 +1,9 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatTooltip} from '@angular/material';
 import { FeedbackService } from './feedback.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import {TooltipPosition} from '@angular/material';
+import { CookieService } from 'ngx-cookie-service';
 
 export interface DialogData {
   email: string;
@@ -14,12 +16,37 @@ export interface DialogData {
   templateUrl: './feedback.component.html',
   styleUrls: ['./feedback.component.scss']
 })
-export class FeedbackComponent {
+export class FeedbackComponent implements OnInit {
 
-  constructor(public dialog: MatDialog, private fbService: FeedbackService,) { }
+  constructor(public dialog: MatDialog,
+              private fbService: FeedbackService,
+              private cookie: CookieService) { }
 
   email:string = 'email data';
   feedback: string = 'feedback data';
+  @ViewChild('tooltip') tooltip: MatTooltip;
+
+  //tooltip
+  position = 'after';
+
+  ngOnInit(){
+    // if(!this.cookie.get('feedback_suggestion')){
+      // this.fbService.openSnackBar('Please help us improve this app by providing feedback', 'Sure thing', {duration: 7000});
+      // this.cookie.set('feedback_suggestion', 'true');
+
+      console.log('hello')
+      setTimeout(()=>{
+        this.tooltip.show();
+      }, 100)
+    // }
+
+  }
+
+  showtip(){
+    this.tooltip.show();
+  }
+
+
 
   openDialog(): void {
     const dialogRef = this.dialog.open(FeedbackDialog, {

@@ -5,6 +5,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { AudioContext } from 'angular-audio-context';
 import { FeedbackService } from '../feedback/feedback.service';
 
+
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -62,8 +63,7 @@ export class MainComponent implements OnInit {
         this.launchRipple();
       },1000)
       
-      this.sound.play();
-      this.sound.adjustVolume(this.volumeSliderValue)
+      this.sound.play(this.volumeSliderValue);
       this.sound.oscillator.type = this.wave;
       
       this.toggleState = 'on';

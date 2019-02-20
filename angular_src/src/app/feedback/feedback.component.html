@@ -1,3 +1,12 @@
 <div class="" style="z-index: 2; position: relative;">
-  <button mat-fab color="secondary" (click)="openDialog()"><mat-icon style="color: rgba(0,0,0,0.3);" >feedback</mat-icon></button>
+  <button 
+    mat-fab
+    color="secondary"
+    (click)="openDialog()"
+    matTooltip="Please provide feedback!"
+    #tooltip = "matTooltip"
+    [matTooltipPosition]="position">
+      <mat-icon style="color: rgba(0,0,0,0.3);" >feedback</mat-icon>
+  </button>
 </div>
+

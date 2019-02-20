@@ -16,11 +16,13 @@ export class Sound {
       this.gainNode.connect(this.context.destination);
     }
   
-    play() {
+    play(gain: any) {
       this.init();
       this.oscillator.frequency.setValueAtTime(440, this.context.currentTime); 
-      // this.gainNode.gain.setValueAtTime(0.5, this.context.currentTime);
+      this.gainNode.gain.setValueAtTime(0, this.context.currentTime);
+      
       this.oscillator.start();
+      this.gainNode.gain.linearRampToValueAtTime(gain, this.context.currentTime + .5); 
     }
     
   
