@@ -30,20 +30,15 @@ export class FeedbackComponent implements OnInit {
   position = 'after';
 
   ngOnInit(){
-    // if(!this.cookie.get('feedback_suggestion')){
-      // this.fbService.openSnackBar('Please help us improve this app by providing feedback', 'Sure thing', {duration: 7000});
-      // this.cookie.set('feedback_suggestion', 'true');
-
-      console.log('hello')
+    if(!this.cookie.get('feedback_suggestion')){
       setTimeout(()=>{
         this.tooltip.show();
-      }, 100)
-    // }
+        this.fbService.openSnackBar('Please help us improve this app by providing feedback', 'Sure thing', {duration: 7000});
+        this.cookie.set('feedback_suggestion', 'true');
+        setTimeout(()=>{this.tooltip.hide()}, 7200)
+      }, 500)
+    }
 
-  }
-
-  showtip(){
-    this.tooltip.show();
   }
 
 

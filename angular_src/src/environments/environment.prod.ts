@@ -6,6 +6,6 @@ export const environment = {
     databaseURL: "https://violintuner-db880.firebaseio.com",
     projectId: "violintuner-db880",
     storageBucket: "violintuner-db880.appspot.com",
-    messagingSenderId: "483139372600"
+    messagingSenderId: "483139372600",
   }
 };

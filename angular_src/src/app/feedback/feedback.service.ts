@@ -17,7 +17,10 @@ const getFeedbackURL = 'domain/feedback/get';
 @Injectable()
 export class FeedbackService{
 
-    constructor(private snackBar: MatSnackBar, private http: HttpClient, private db: AngularFirestore){}
+    constructor(private snackBar: MatSnackBar, private http: HttpClient, private db: AngularFirestore){
+    }
+
+
 
     public email: string = '';
     public feedback: string = '';
